@@ -1,0 +1,27 @@
+{
+    "name": "pf2e-secret-roll-options",
+    "title": "PF2e Secret Roll Options",
+    "description": "A simple module which adds options for the default level of privacy for checks with the Secret trait in Pathfinder 2e.",
+    "authors": [
+        {
+            "name": "randomness"
+        }
+    ],
+    "version": "1",
+    "minimumCoreVersion": "12.331",
+    "scripts": [
+        "scripts/pf2e-secret-roll-options.js"
+    ],
+    "relationships": {
+        "required": [
+            {
+                "name": "pf2e",
+                "type": "system",
+                "compatibility": {
+                    "minimum": "6.8.4",
+                    "verified": "6.8.4"
+                }
+            }
+        ]
+    }
+}
