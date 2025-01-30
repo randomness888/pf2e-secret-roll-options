@@ -39,6 +39,7 @@ function init() {
     });
 
     const playerRole = game.users.current.role;
+    const rollModes = ["publicroll", "gmroll", "blindroll", "selfroll"]
 
     const updateCheckModifiersDialog = (checkModifiersDialog, ...args) => {
         const rollModeSetting = game.settings.get("pf2e-secret-roll-options", "rollMode");
@@ -47,29 +48,15 @@ function init() {
         console.debug("pf2e-secret-roll-options | maxRole:", maxRole)
         const rollMode = rollModeSetting === "defaultroll" ? game.settings.get("core", "rollMode") : rollModeSetting;
         console.debug("pf2e-secret-roll-options | rollMode:", rollMode)
-        switch (rollMode) {
-            case "publicroll":
-                index = 0;
-                break;
-            case "gmroll":
-                index = 1;
-                break;
-            case "blindroll":
-                index = 2;
-                break;
-            case "selfroll":
-                index = 3;
-                break;
-        }
+        const index = rollModes.indexOf(rollMode)
         console.debug("pf2e-secret-roll-options | index:", index)
         if (checkModifiersDialog.context?.traits?.includes("secret") && playerRole <= maxRole) {
             checkModifiersDialog.context.rollMode = rollMode;
-            for (let i = 0; i < checkModifiersDialog.element?.children()[1]?.children[0][9]?.length; i++) {
-                checkModifiersDialog.element.children()[1].children[0][9][i].selected = false;
+            const rollSelect = checkModifiersDialog.element.find("select[name='rollmode']")
+            for (let i = 0; i < rollSelect.children().length; i++) {
+                if (rollSelect.find(`option[value='${rollModes[i]}']`).length > 0) rollSelect.find(`option[value='${rollModes[i]}']`)[0].selected = false;
             }
-            if (index < checkModifiersDialog.element?.children()[1]?.children[0][9]?.length) {
-                checkModifiersDialog.element.children()[1].children[0][9][index].selected = true;
-            }
+            if (rollSelect.find(`option[value='${rollModes[index]}']`).length > 0) rollSelect.find(`option[value='${rollModes[index]}']`)[0].selected = true;
         }
     }
 
