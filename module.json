@@ -7,21 +7,14 @@
             "name": "randomness"
         }
     ],
-    "version": "1",
-    "minimumCoreVersion": "12.331",
+    "compatability": {
+        "minimum": "12",
+        "verified": "12"
+    },
     "scripts": [
         "scripts/pf2e-secret-roll-options.js"
     ],
-    "relationships": {
-        "required": [
-            {
-                "name": "pf2e",
-                "type": "system",
-                "compatibility": {
-                    "minimum": "6.8.4",
-                    "verified": "6.8.4"
-                }
-            }
-        ]
-    }
+    "url": "https://github.com/randomness888/pf2e-secret-roll-options",
+    "system": [ "pf2e" ],
+    "version": "1.0.0"
 }
